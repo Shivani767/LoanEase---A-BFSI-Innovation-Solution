@@ -49,35 +49,6 @@ We’ve benchmarked our performance against industry standards to ensure our bor
 
 ---
 
-## 🧠 System Architecture
-
-### End-to-End Flow
-```mermaid
-flowchart LR
-  U[Applicant] -->|Web Chat / WhatsApp UI| FE[Frontend (React + TS)]
-  FE -->|REST + multipart uploads| API[Backend API (FastAPI)]
-
-  API --> MA[Master Agent Orchestrator]
-  MA --> KYC[KYC Agent\nOCR + PAN/Aadhaar validation]
-  MA --> UW[Underwriting Agent\nXGBoost risk score + SHAP]
-  MA --> REC[Recommendation Logic\nOffer + tenure + rate]
-  MA --> NEG[Negotiation Agent\nCounter-offers + limits]
-  MA --> TR[Translation Agent\nEN/HI + Hinglish intent]
-  MA --> BC[Blockchain Agent / Service\nSanction letter sealing + verification]
-
-  API --> STORE[(Session + Application Store)]
-  UW --> ART[(Model Artifacts)]
-  BC --> CHAIN[(Tamper-evident Ledger)]
-```
-
-### Agent Responsibilities
-- Master Agent: routes tasks, enforces stage transitions, and composes final responses.
-- KYC Agent: OCR extraction + cross-document verification and eligibility checks.
-- Underwriting Agent: risk scoring (XGBoost) + SHAP explainability narratives.
-- Negotiation Agent: policy-driven counter-offers (risk-tier aware), escalation handling.
-- Blockchain Agent: sanction-letter generation, signing, hashing, and on-chain reference creation.
-- Translation Agent: multilingual support and intent handling for mixed-language inputs.
-
 ## 🛠️ Tech Stack
 
 ### Frontend & Core
