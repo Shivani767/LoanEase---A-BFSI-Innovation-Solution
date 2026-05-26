@@ -1,0 +1,9 @@
+{
+  "model_version": "20260324130145",
+  "accuracy": 0.8455284552845529,
+  "best_params": {
+    "learning_rate": 0.05,
+    "max_depth": 3,
+    "n_estimators": 100
+  }
+}

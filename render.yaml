@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: loanease-backend
+    runtime: docker
+    plan: starter
+    autoDeployTrigger: commit
+    healthCheckPath: /health
+    dockerfilePath: backend/Dockerfile
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"

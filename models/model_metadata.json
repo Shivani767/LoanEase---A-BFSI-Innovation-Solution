@@ -1,0 +1,106 @@
+{
+  "model_type": "LGBMClassifier",
+  "training_date": "2026-04-27T18:11:03.231515",
+  "datasets_used": [
+    "kaggle_loan_prediction",
+    "uci_credit_approval",
+    "german_credit",
+    "home_credit_sample"
+  ],
+  "total_training_samples": 75827,
+  "total_dataset_rows": 52303,
+  "test_accuracy": 0.9135,
+  "test_precision": 0.8887,
+  "test_recall": 0.9455,
+  "test_f1": 0.9162,
+  "test_auc_roc": 0.9625,
+  "feature_names": [
+    "income",
+    "loan_amount",
+    "loan_term_months",
+    "credit_history",
+    "dependents",
+    "coapplicant_income",
+    "debt_to_income",
+    "total_income",
+    "income_per_dependent",
+    "loan_to_income",
+    "estimated_emi",
+    "emi_to_income",
+    "employment_type_salaried",
+    "employment_type_self_employed",
+    "education_graduate",
+    "education_not_graduate",
+    "gender_female",
+    "gender_male",
+    "property_area_rural",
+    "property_area_semiurban",
+    "property_area_urban"
+  ],
+  "best_params": {
+    "subsample": 0.8,
+    "num_leaves": 127,
+    "n_estimators": 500,
+    "max_depth": 7,
+    "learning_rate": 0.15,
+    "colsample_bytree": 1.0
+  },
+  "cv_mean_score": 0.9607,
+  "model_comparison": [
+    {
+      "Model": "XGBoost",
+      "CV_Accuracy": 0.8368,
+      "Accuracy": 0.8376,
+      "Precision": 0.7817,
+      "Recall": 0.9368,
+      "F1": 0.8523,
+      "AUC_ROC": 0.9138,
+      "Train_Time_s": 6.6,
+      "Pred_Time_us": 0.82
+    },
+    {
+      "Model": "LightGBM",
+      "CV_Accuracy": 0.8703,
+      "Accuracy": 0.8723,
+      "Precision": 0.8167,
+      "Recall": 0.9601,
+      "F1": 0.8826,
+      "AUC_ROC": 0.9368,
+      "Train_Time_s": 5.21,
+      "Pred_Time_us": 2.51
+    },
+    {
+      "Model": "RandomForest",
+      "CV_Accuracy": 0.6836,
+      "Accuracy": 0.6876,
+      "Precision": 0.6569,
+      "Recall": 0.7852,
+      "F1": 0.7153,
+      "AUC_ROC": 0.7671,
+      "Train_Time_s": 19.33,
+      "Pred_Time_us": 20.82
+    },
+    {
+      "Model": "LogisticRegression",
+      "CV_Accuracy": 0.5969,
+      "Accuracy": 0.598,
+      "Precision": 0.5797,
+      "Recall": 0.7128,
+      "F1": 0.6394,
+      "AUC_ROC": 0.6397,
+      "Train_Time_s": 1.49,
+      "Pred_Time_us": 0.15
+    },
+    {
+      "Model": "GradientBoosting",
+      "CV_Accuracy": 0.8563,
+      "Accuracy": 0.8589,
+      "Precision": 0.8044,
+      "Recall": 0.9484,
+      "F1": 0.8705,
+      "AUC_ROC": 0.9176,
+      "Train_Time_s": 71.0,
+      "Pred_Time_us": 2.89
+    }
+  ]
+}
