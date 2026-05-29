@@ -1,0 +1,3 @@
+# Placeholder for XGBoost model
+# In production, this would be a trained model file
+# For now, the underwriting agent will use fallback logic

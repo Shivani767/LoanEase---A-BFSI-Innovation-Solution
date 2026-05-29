@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔒 LoanEase Document Verification</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(30, 41, 59, 0.95);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            padding: 24px;
+            border-radius: 16px 16px 0 0;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .header p {
+            color: #dbeafe;
+            font-size: 14px;
+        }
+        
+        .content {
+            padding: 32px;
+        }
+        
+        .status {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        
+        .status-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+        
+        .status-text {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .status-description {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        
+        .success {
+            color: #10b981;
+        }
+        
+        .error {
+            color: #ef4444;
+        }
+        
+        .warning {
+            color: #f59e0b;
+        }
+        
+        .info-grid {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .info-card {
+            background: rgba(51, 65, 85, 0.5);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .info-card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #94a3b8;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .info-label {
+            color: #94a3b8;
+        }
+        
+        .info-value {
+            font-weight: 500;
+            color: #e2e8f0;
+        }
+        
+        .hash-display {
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #64748b;
+            word-break: break-all;
+            background: rgba(15, 23, 42, 0.5);
+            padding: 8px;
+            border-radius: 6px;
+            margin-top: 4px;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: rgba(51, 65, 85, 0.8);
+            color: #e2e8f0;
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(71, 85, 105, 0.8);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            color: #64748b;
+            font-size: 12px;
+        }
+        
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #3b82f6;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔒 LoanEase Document Verification</h1>
+            <p>Immutable Blockchain Verification System</p>
+        </div>
+        
+        <div class="content" id="content">
+            <div class="loading">
+                <div class="spinner"></div>
+                <span>Verifying document...</span>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Powered by LoanEase Blockchain • Verification Time: <span id="timestamp"></span></p>
+        </div>
+    </div>
+
+    <script>
+        // Get reference from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const reference = urlParams.get('ref') || '{{ reference }}';
+        
+        // Update timestamp
+        document.getElementById('timestamp').textContent = new Date().toLocaleString();
+        
+        // Verify document
+        async function verifyDocument() {
+            try {
+                const response = await fetch(`/blockchain/verify/${reference}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    showVerificationResult(data);
+                } else {
+                    showError(data.message || 'Verification failed');
+                }
+            } catch (error) {
+                showError('Network error during verification');
+            }
+        }
+        
+        function showVerificationResult(data) {
+            const content = document.getElementById('content');
+            
+            if (data.status === 'not_found') {
+                content.innerHTML = `
+                    <div class="status">
+                        <div class="status-icon error">❌</div>
+                        <div class="status-text error">DOCUMENT NOT FOUND</div>
+                        <div class="status-description">This reference does not exist in our ledger. This may indicate fraud.</div>
+                    </div>
+                    <div class="info-card">
+                        <h3>Reference Details</h3>
+                        <div class="info-row">
+                            <span class="info-label">Reference ID:</span>
+                            <span class="info-value">${reference}</span>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-secondary" onclick="window.close()">Close</button>
+                    </div>
+                `;
+            } else if (data.status === 'modified') {
+                content.innerHTML = `
+                    <div class="status">
+                        <div class="status-icon warning">⚠️</div>
+                        <div class="status-text warning">DOCUMENT MODIFIED</div>
+                        <div class="status-description">The document you have does not match our ledger. Contact LoanEase immediately.</div>
+                    </div>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>Document Hash Mismatch</h3>
+                            <div class="info-row">
+                                <span class="info-label">Expected Hash:</span>
+                            </div>
+                            <div class="hash-display">${data.expected_hash}</div>
+                            <div class="info-row" style="margin-top: 12px;">
+                                <span class="info-label">Your Document Hash:</span>
+                            </div>
+                            <div class="hash-display">${data.actual_hash}</div>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn btn-primary" onclick="window.open('mailto:support@loanease.com')">Contact Support</button>
+                        <button class="btn btn-secondary" onclick="window.close()">Close</button>
+                    </div>
+                `;
+            } else {
+                // Valid document
+                content.innerHTML = `
+                    <div class="status">
+                        <div class="status-icon success">✅</div>
+                        <div class="status-text success">DOCUMENT AUTHENTIC</div>
+                        <div class="status-description">This document is verified and immutable on the LoanEase blockchain</div>
+                    </div>
+                    
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>Document Details</h3>
+                            <div class="info-row">
+                                <span class="info-label">Reference:</span>
+                                <span class="info-value">${data.reference}</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Applicant:</span>
+                                <span class="info-value">${data.applicant_name}</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Loan Amount:</span>
+                                <span class="info-value">₹${data.loan_amount?.toLocaleString() || 'N/A'}</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Sanctioned:</span>
+                                <span class="info-value">${data.sanction_date || 'N/A'}</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Interest Rate:</span>
+                                <span class="info-value">${data.interest_rate || 'N/A'}% p.a.</span>
+                            </div>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h3>Blockchain Details</h3>
+                            <div class="info-row">
+                                <span class="info-label">Block:</span>
+                                <span class="info-value">#${data.block_index}</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Block Hash:</span>
+                            </div>
+                            <div class="hash-display">${data.block_hash}</div>
+                            <div class="info-row" style="margin-top: 12px;">
+                                <span class="info-label">Previous Hash:</span>
+                            </div>
+                            <div class="hash-display">${data.previous_hash}</div>
+                            <div class="info-row">
+                                <span class="info-label">Merkle Root:</span>
+                            </div>
+                            <div class="hash-display">${data.merkle_root}</div>
+                        </div>
+                        
+                        <div class="info-card">
+                            <h3>Cryptographic Verification</h3>
+                            <div class="info-row">
+                                <span class="info-label">Chain Status:</span>
+                                <span class="info-value success">✅ Valid (${data.chain_length} blocks)</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Document SHA-256:</span>
+                            </div>
+                            <div class="hash-display">${data.document_hash}</div>
+                            <div class="info-row">
+                                <span class="info-label">Digital Signature:</span>
+                                <span class="info-value success">✅ Valid RSA-2048</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Proof of Work:</span>
+                                <span class="info-value">Nonce ${data.nonce}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="actions">
+                        <a href="/blockchain/download/${reference}" class="btn btn-primary">Download Original Letter</a>
+                        <button class="btn btn-secondary" onclick="window.print()">Print Verification</button>
+                    </div>
+                `;
+            }
+        }
+        
+        function showError(message) {
+            const content = document.getElementById('content');
+            content.innerHTML = `
+                <div class="status">
+                    <div class="status-icon error">❌</div>
+                    <div class="status-text error">VERIFICATION ERROR</div>
+                    <div class="status-description">${message}</div>
+                </div>
+                <div class="actions">
+                    <button class="btn btn-secondary" onclick="location.reload()">Try Again</button>
+                </div>
+            `;
+        }
+        
+        // Start verification
+        verifyDocument();
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: loanease-backend
+    runtime: docker
+    plan: starter
+    autoDeployTrigger: commit
+    healthCheckPath: /health
+    dockerfilePath: backend/Dockerfile
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"
+  - type: web
+    name: loanease-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    autoDeployTrigger: commit
+    envVars:
+      - key: VITE_API_URL
+        value: https://loanease-backend.onrender.com

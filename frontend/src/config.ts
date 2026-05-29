@@ -1,0 +1,25 @@
+export const API_BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
+
+export const ENDPOINTS = {
+  session_init: `${API_BASE_URL}/session/init`,
+  kyc_pan: `${API_BASE_URL}/kyc/extract/pan`,
+  kyc_aadhaar: `${API_BASE_URL}/kyc/extract/aadhaar`,
+  kyc_verify: `${API_BASE_URL}/kyc/verify`,
+  kyc_send_otp: `${API_BASE_URL}/kyc/send-otp`,
+  kyc_resend_otp: `${API_BASE_URL}/kyc/resend-otp`,
+  kyc_verify_otp: `${API_BASE_URL}/kyc/verify-otp`,
+  assess: `${API_BASE_URL}/assess`,
+  credit_assess: `${API_BASE_URL}/credit/assess`,
+  credit_score: `${API_BASE_URL}/credit-score`,
+  credit_analyze_statement: `${API_BASE_URL}/credit/analyze-statement`,
+  negotiate_start: `${API_BASE_URL}/negotiate/start`,
+  negotiate_counter: `${API_BASE_URL}/negotiate/counter`,
+  negotiate_accept: `${API_BASE_URL}/negotiate/accept`,
+  negotiate_escalate: `${API_BASE_URL}/negotiate/escalate`,
+  pipeline_start: `${API_BASE_URL}/pipeline/start`,
+  pipeline_log: `${API_BASE_URL}/pipeline/log`,
+  blockchain_sanction: `${API_BASE_URL}/blockchain/sanction`,
+  session_save: `${API_BASE_URL}/session/save`,
+  escalation_callback: `${API_BASE_URL}/escalation/callback-preference`,
+  health: `${API_BASE_URL}/health`,
+};

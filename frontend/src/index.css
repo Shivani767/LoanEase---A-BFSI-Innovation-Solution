@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* EY Brand Colors - Black background, White text, Yellow buttons */
+    --background: 0 0% 13%; /* EY Black background */
+    --foreground: 0 0% 100%; /* White text */
+
+    --card: 0 0% 18%; /* Slightly lighter black for cards */
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 18%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 47 100% 50%; /* EY Yellow #FFE600 for buttons */
+    --primary-foreground: 0 0% 13%; /* Black text on yellow buttons */
+
+    --secondary: 0 0% 25%; /* Dark gray for secondary elements */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 25%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 47 100% 50%; /* Yellow accent */
+    --accent-foreground: 0 0% 13%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 13%;
+
+    --border: 0 0% 25%;
+    --input: 0 0% 25%;
+    --ring: 47 100% 50%; /* Yellow focus ring */
+
+    --radius: 0.5rem;
+
+    /* EY Gradient Variables */
+    --gradient-primary: linear-gradient(135deg, hsl(47, 100%, 50%) 0%, hsl(45, 100%, 45%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(0, 0%, 8%) 0%, hsl(0, 0%, 13%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0, 0%, 18%) 0%, hsl(0, 0%, 15%) 100%);
+
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.3);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.4), 0 2px 4px -2px hsl(0 0% 0% / 0.4);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.5), 0 4px 6px -4px hsl(0 0% 0% / 0.5);
+    --shadow-glow: 0 0 40px hsl(47 100% 50% / 0.4);
+
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 47 100% 50%;
+    --sidebar-primary-foreground: 0 0% 13%;
+    --sidebar-accent: 0 0% 20%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 25%;
+    --sidebar-ring: 47 100% 50%;
+
+    /* Redesign variables */
+    --y: #F5C518;
+    --black: #000000;
+    --card-custom: #0d0d0d;
+    --border-custom: #1a1a1a;
+    --muted-custom: #444444;
+    --dim: #222222;
+    --green: #22c55e;
+    --red: #ef4444;
+  }
+
+  .dark {
+    --background: 0 0% 13%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 18%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 18%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 47 100% 50%;
+    --primary-foreground: 0 0% 13%;
+
+    --secondary: 0 0% 25%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 25%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 47 100% 50%;
+    --accent-foreground: 0 0% 13%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 0 0% 25%;
+    --input: 0 0% 25%;
+    --ring: 47 100% 50%;
+
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 47 100% 50%;
+    --sidebar-primary-foreground: 0 0% 13%;
+    --sidebar-accent: 0 0% 20%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 47 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    background-color: hsl(0, 0%, 13%); /* Force black background */
+    color: hsl(0, 0%, 100%); /* Force white text */
+  }
+}
+
+@layer utilities {
+  /* EY Text Colors */
+  .text-ey-white {
+    color: hsl(0, 0%, 100%) !important;
+  }
+
+  .text-ey-black {
+    color: hsl(0, 0%, 13%) !important;
+  }
+
+  .text-ey-yellow {
+    color: hsl(47, 100%, 50%) !important;
+  }
+
+  /* EY Background Colors */
+  .bg-ey-black {
+    background-color: hsl(0, 0%, 13%) !important;
+  }
+
+  .bg-ey-dark {
+    background-color: hsl(0, 0%, 18%) !important;
+  }
+
+  .bg-ey-yellow {
+    background-color: hsl(47, 100%, 50%) !important;
+  }
+
+  /* EY Gradients */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+
+  .bg-gradient-hero {
+    background-image: var(--gradient-hero);
+  }
+
+  .bg-gradient-card {
+    background-image: var(--gradient-card);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* EY Animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-soft {
+    animation: pulse-soft 2s ease-in-out infinite;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.5s ease-out;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.3s ease-out;
+  }
+
+  /* EY Button Styles */
+  .btn-ey-primary {
+    @apply bg-ey-yellow text-ey-black font-semibold px-6 py-3 rounded-lg;
+    @apply hover:bg-[hsl(45,100%,45%)] transition-all duration-200;
+    @apply shadow-md hover:shadow-glow hover:-translate-y-0.5;
+  }
+
+  .btn-ey-outline {
+    @apply bg-transparent text-white border-2 border-white font-semibold px-6 py-3 rounded-lg;
+    @apply hover:bg-white hover:text-ey-black transition-all duration-200;
+  }
+
+  .btn-ey-outline-yellow {
+    @apply bg-transparent text-ey-yellow border-2 border-ey-yellow font-semibold px-6 py-3 rounded-lg;
+    @apply hover:bg-ey-yellow hover:text-ey-black transition-all duration-200;
+  }
+
+  /* Hide yellow resize handle when not being used */
+  .resize-handle,
+  [data-resize-handle] {
+    display: none !important;
+  }
+
+  /* Only show resize handle on hover or when explicitly needed */
+  .resizable-panel:hover .resize-handle,
+  .resizable-panel:focus-within .resize-handle {
+    display: flex !important;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes slide-up {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
