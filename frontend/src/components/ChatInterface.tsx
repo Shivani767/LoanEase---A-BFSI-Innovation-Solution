@@ -19,6 +19,7 @@ import { formatIndianRupees, detectLanguage } from "../lib/languageUtils";
 import { cn } from "../lib/utils";
 import { User } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useIsMobile } from "../hooks/use-mobile";
 
 const AGENT_PIPELINE = [
   "Master Agent",
@@ -274,7 +275,8 @@ export const ChatInterface = ({ onClose }: ChatInterfaceProps) => {
   const [showCreditSummaryPopup, setShowCreditSummaryPopup] = useState(false);
   const [isOfflineMode, setIsOfflineMode] = useState(false);
   const [isDemoMode, setIsDemoMode] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const isMobile = useIsMobile();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // Feature 2: Bank Statement Analysis
   const [showBankStatementCard, setShowBankStatementCard] = useState(false);
@@ -314,6 +316,10 @@ export const ChatInterface = ({ onClose }: ChatInterfaceProps) => {
   const toggleAgentSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+  useEffect(() => {
+    setIsSidebarOpen(!isMobile);
+  }, [isMobile]);
 
   const updatePipelineTracker = (stage: string) => {
     const stageMap = {
@@ -3061,9 +3067,6 @@ ${guidance.repayment_history_impact || ""}`.trim(),
           <div ref={messagesEndRef} />
         </div>
 
-        <div className="lg:w-[340px] lg:ml-4 min-h-0 overflow-y-auto chat-messages-container">
-        {/* Removed redundant floating AgentActivityPanel */}
-        </div>
       </div>
 
       {/* Input */}

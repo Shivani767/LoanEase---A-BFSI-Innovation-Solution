@@ -1,4 +1,4 @@
-export const API_BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
+export const API_BASE_URL = import.meta.env.VITE_API_URL ?? "https://loanease-a-bfsi-innovation-solution.onrender.com";
 
 export const ENDPOINTS = {
   session_init: `${API_BASE_URL}/session/init`,
