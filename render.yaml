@@ -2,7 +2,7 @@ services:
   - type: web
     name: loanease-backend
     runtime: docker
-    plan: starter
+    plan: free
     autoDeploy: true
     healthCheckPath: /health
     dockerfilePath: backend/Dockerfile
