@@ -3,7 +3,7 @@ services:
     name: loanease-backend
     runtime: docker
     plan: starter
-    autoDeployTrigger: commit
+    autoDeploy: true
     healthCheckPath: /health
     dockerfilePath: backend/Dockerfile
     envVars:
@@ -15,7 +15,7 @@ services:
     rootDir: frontend
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
-    autoDeployTrigger: commit
+    autoDeploy: true
     envVars:
       - key: VITE_API_URL
         value: https://loanease-backend.onrender.com
