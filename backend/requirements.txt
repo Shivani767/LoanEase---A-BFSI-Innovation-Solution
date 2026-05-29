@@ -3,6 +3,7 @@ fastapi
 uvicorn[standard]
 pydantic-settings
 python-dotenv
+slowapi
 
 # AI/ML dependencies
 groq>=0.13.0
